@@ -24,9 +24,9 @@ export class MatchPassword implements Validator {
 
     validate: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
         const group = control as FormGroup;  
-        
         const { password, passwordConfirmation } = group.value;  
         
+
         if (password === passwordConfirmation) {
           return null;  
         } else {
