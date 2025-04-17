@@ -1,1 +1,26 @@
-<p>sign-up works!</p>
+<h3>Create an account</h3>
+
+<form class="ui form" [formGroup]="signUpForm">
+  <div class="four wide field">
+    <label for="">Username</label>
+    <input type="text" formControlName="username" placeholder="Username" />
+  </div>
+  {{ signUpForm.get("username")?.errors | json }}
+  <div class="four wide field">
+    <label for="">Password</label>
+    <input type="text" formControlName="password" placeholder="Password" />
+  </div>
+  {{ signUpForm.get("password")?.errors | json }}
+
+  <div class="four wide field">
+    <label for="">Confirm Password</label>
+    <input
+      type="text"
+      formControlName="passwordConfirmation"
+      placeholder="Confirm Password"
+    />
+  </div>
+  {{ signUpForm.get("passwordConfirmation")?.errors | json }}
+
+  <button class="ui button" type="submit">Submit</button>
+</form>
