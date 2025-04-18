@@ -14,6 +14,8 @@ export class SignUpComponent implements OnInit {
   }
 
   signUpForm!: FormGroup;
+  usernameControl!: FormControl;
+
 
   ngOnInit() {
     this.signUpForm = new FormGroup(
@@ -43,5 +45,7 @@ export class SignUpComponent implements OnInit {
         validators: [this.matchPassword.validate.bind(this.matchPassword)]
       }
     );
+
+    this.usernameControl = this.signUpForm.get('username') as FormControl ;
   }
 }
