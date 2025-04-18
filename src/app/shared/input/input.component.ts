@@ -14,9 +14,8 @@ export class InputComponent {
   @Input() label: string = '';
 
 
-  showErrors() {
-    const { dirty, touched, errors } = this.control;
-    return dirty && touched && errors;
+  showErrors(): boolean {
+    return this.control.invalid && (this.control.dirty || this.control.touched);
   }
 
 }
