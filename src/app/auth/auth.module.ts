@@ -6,7 +6,6 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
-provideHttpClient
 
 @NgModule({
   declarations: [
@@ -19,7 +18,7 @@ provideHttpClient
     ReactiveFormsModule,
   ],
   providers:[
-  //  provideHttpClient()
+    provideHttpClient()
   ]
 })
 export class AuthModule { }
