@@ -5,32 +5,60 @@
     <label for="">Username</label>
     <input type="text" formControlName="username" placeholder="Username" />
   </div> -->
-  
 
-  <app-input label="Username" [control]="usernameControl"></app-input>
-  {{ signUpForm.get("username")?.errors | json }}
+  <app-input
+    label="Username"
+    [control]="usernameControl"
+    inputType="text"
+  ></app-input>
+  <!-- {{ signUpForm.get("username")?.errors | json }} -->
 
-
-  <div class="four wide field">
+  <!-- <div class="four wide field">
     <label for="">Password</label>
     <input type="text" formControlName="password" placeholder="Password" />
-  </div>
-  {{ signUpForm.get("password")?.errors | json }}
+  </div> -->
 
+  <app-input
+    label="Password"
+    [control]="passwordControl"
+    inputType="password"
+  ></app-input>
 
+  <!-- {{ signUpForm.get("password")?.errors | json }} -->
 
-  <div class="four wide field">
+  <!-- <div class="four wide field">
     <label for="">Confirm Password</label>
     <input
       type="text"
       formControlName="passwordConfirmation"
       placeholder="Confirm Password"
     />
+  </div> -->
+  <app-input
+    label="Password Confirmation"
+    [control]="passwordConfirmationControl"
+    inputType="password"
+  ></app-input>
+  <!-- {{ signUpForm.get("passwordConfirmation")?.errors | json }} -->
+
+  <div class="ui four wide field">
+    <div
+      class="ui form error"
+      *ngIf="
+        signUpForm.get('password')?.touched &&
+        signUpForm.get('passwordConfirmation')?.touched &&
+        signUpForm.errors
+      "
+    >
+      <p
+        *ngIf="signUpForm.errors?.['passwordNotMatched']"
+        class="ui error message"
+      >
+        Password & Confirmation Password Doesnt Match
+      </p>
+    </div>
   </div>
-  {{ signUpForm.get("passwordConfirmation")?.errors | json }}
 
-
-
-  <button class="ui button" type="submit">Submit</button>
- errors -  {{signUpForm.errors | json}}
+  <button class="ui button btns" type="submit">Submit</button>
+  <!-- errors -  {{signUpForm.errors | json}} -->
 </form>

@@ -1,7 +1,7 @@
 <div class="four wide field">
   <div class="ui form error">
     <label>{{ label }}</label>
-    <input [formControl]="control" />
+    <input [formControl]="control" [type]="inputType" />
     <div *ngIf="showErrors()" class="ui error message">
       <p *ngIf="control.errors?.['required']">Value is required</p>
       <p *ngIf="control.errors?.['minlength']">

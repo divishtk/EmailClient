@@ -15,6 +15,9 @@ export class SignUpComponent implements OnInit {
 
   signUpForm!: FormGroup;
   usernameControl!: FormControl;
+  passwordControl!: FormControl;
+  passwordConfirmationControl!: FormControl;
+
 
 
   ngOnInit() {
@@ -47,5 +50,8 @@ export class SignUpComponent implements OnInit {
     );
 
     this.usernameControl = this.signUpForm.get('username') as FormControl ;
+    this.passwordControl = this.signUpForm.get('password') as FormControl ;
+    this.passwordConfirmationControl = this.signUpForm.get('passwordConfirmation') as FormControl ;
+
   }
 }
