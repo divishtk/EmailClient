@@ -6,11 +6,7 @@
     <input type="text" formControlName="username" placeholder="Username" />
   </div> -->
 
-  <app-input
-    label="Username"
-    [control]="usernameControl"
-    inputType="text"
-  ></app-input>
+  <app-input label="Username" [control]="usernameControl" inputType="text"></app-input>
   <!-- {{ signUpForm.get("username")?.errors | json }} -->
 
   <!-- <div class="four wide field">
@@ -18,11 +14,7 @@
     <input type="text" formControlName="password" placeholder="Password" />
   </div> -->
 
-  <app-input
-    label="Password"
-    [control]="passwordControl"
-    inputType="password"
-  ></app-input>
+  <app-input label="Password" [control]="passwordControl" inputType="password"></app-input>
 
   <!-- {{ signUpForm.get("password")?.errors | json }} -->
 
@@ -34,31 +26,24 @@
       placeholder="Confirm Password"
     />
   </div> -->
-  <app-input
-    label="Password Confirmation"
-    [control]="passwordConfirmationControl"
-    inputType="password"
-  ></app-input>
+  <app-input label="Password Confirmation" [control]="passwordConfirmationControl" inputType="password"></app-input>
   <!-- {{ signUpForm.get("passwordConfirmation")?.errors | json }} -->
 
   <div class="ui four wide field">
-    <div
-      class="ui form error"
-      *ngIf="
+    <div class="ui form error" *ngIf="
         signUpForm.get('password')?.touched &&
         signUpForm.get('passwordConfirmation')?.touched &&
         signUpForm.errors
-      "
-    >
-      <p
-        *ngIf="signUpForm.errors?.['passwordNotMatched']"
-        class="ui error message"
-      >
+      ">
+      <p *ngIf="signUpForm.errors?.['passwordNotMatched']" class="ui error message">
         Password & Confirmation Password Doesnt Match
+      </p>
+      <p *ngIf="signUpForm.errors?.['noConnection']" class=" ui error message">
+        No connection found failed to sign up, please check your internet connection
       </p>
     </div>
   </div>
 
   <button class="ui button btns" type="submit">Submit</button>
-  <!-- errors -  {{signUpForm.errors | json}} -->
+  errors - {{ signUpForm.errors | json }}
 </form>

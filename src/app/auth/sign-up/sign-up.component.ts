@@ -11,7 +11,7 @@ import { AuthService } from '../auth.service';
   styleUrl: './sign-up.component.css',
 })
 export class SignUpComponent implements OnInit {
-  constructor(private matchPassword: MatchPassword ,private uniqueUsername : UniqueUsername ,private authService: AuthService) {
+  constructor(private matchPassword: MatchPassword, private uniqueUsername: UniqueUsername, private authService: AuthService) {
   }
 
   signUpForm!: FormGroup;
@@ -30,10 +30,10 @@ export class SignUpComponent implements OnInit {
           Validators.maxLength(20),
           Validators.pattern(/^[a-z0-9]+$/),
         ],
-        [
-          this.uniqueUsername.validate.bind(this.uniqueUsername)
-        ]
-      ),
+          [
+            this.uniqueUsername.validate.bind(this.uniqueUsername)
+          ]
+        ),
         password: new FormControl('', [
           Validators.required,
           Validators.minLength(4),
@@ -50,21 +50,31 @@ export class SignUpComponent implements OnInit {
       }
     );
 
-    this.usernameControl = this.signUpForm.get('username') as FormControl ;
-    this.passwordControl = this.signUpForm.get('password') as FormControl ;
-    this.passwordConfirmationControl = this.signUpForm.get('passwordConfirmation') as FormControl ;
+    this.usernameControl = this.signUpForm.get('username') as FormControl;
+    this.passwordControl = this.signUpForm.get('password') as FormControl;
+    this.passwordConfirmationControl = this.signUpForm.get('passwordConfirmation') as FormControl;
 
   }
 
 
 
-  onSubmit(){
-      if(this.signUpForm.invalid){
-          return ;
-      }
-      this.authService.signUp(this.signUpForm.value)
-                      .subscribe((response)=>{
-                          console.log(response);
-                      })
+  onSubmit() {
+    if (this.signUpForm.invalid) {
+      return;
+    }
+    this.authService.signUp(this.signUpForm.value)
+      .subscribe({
+        next: response => {
+          //navigate to some other route
+
+
+        },
+        error: (err) => {
+            if(!err.status){
+              this.signUpForm.setErrors({noConnection : true })
+            }
+        }
+
+      })
   }
 }
