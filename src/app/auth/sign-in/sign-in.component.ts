@@ -1,23 +1,19 @@
 import { Component } from '@angular/core';
-import {
-  FormControl
-  , FormGroup
-  , Validators
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sign-in',
   standalone: false,
   templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.css'
+  styleUrl: './sign-in.component.css',
 })
 export class SignInComponent {
+  constructor(private authService: AuthService) {}
 
   signInForm!: FormGroup;
-  usernameSignInControl!: FormControl
-  passwordSignInControl!: FormControl
-
-
+  usernameSignInControl!: FormControl;
+  passwordSignInControl!: FormControl;
 
   ngOnInit() {
     this.signInForm = new FormGroup({
@@ -31,17 +27,17 @@ export class SignInComponent {
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(20),
-      ])
-    })
-
-    this.usernameSignInControl = this.signInForm.get('username') as FormControl ;
-    this.passwordSignInControl = this.signInForm.get('password') as FormControl ;
-
+      ]),
+    });
+    this.usernameSignInControl = this.signInForm.get('username') as FormControl;
+    this.passwordSignInControl = this.signInForm.get('password') as FormControl;
   }
 
-  
+  onSubmit() {
+    if (this.signInForm.invalid) {
+      return;
+    }
 
-
-
-
+    this.authService.signIn(this.signInForm.value).subscribe(() => {});
+  }
 }

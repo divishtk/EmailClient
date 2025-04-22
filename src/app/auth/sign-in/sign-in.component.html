@@ -1,10 +1,13 @@
 <h3>Sign In</h3>
 
-<form class="ui form" [formGroup]="signInForm">
+<form class="ui form" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
 
     <app-input inputType="text" label="Username" [control]="usernameSignInControl"></app-input>
     <app-input inputType="password" label="Password" [control]="passwordSignInControl"></app-input>
     <button class="ui button primary" type="submit">Submit</button>
+
+
+    
 
   <!-- <div class="four wide field">
     <div class="field">
