@@ -7,11 +7,13 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import { AuthSignOutComponent } from './auth-sign-out/auth-sign-out.component';
 
 @NgModule({
   declarations: [
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    AuthSignOutComponent
   ],
   imports: [
     CommonModule,
