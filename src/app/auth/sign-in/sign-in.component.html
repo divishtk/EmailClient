@@ -1,27 +1,46 @@
 <h3>Sign In</h3>
+<ng-container>
+  <form class="ui form" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <app-input
+      inputType="text"
+      label="Username"
+      [control]="usernameSignInControl"
+    ></app-input>
+    <app-input
+      inputType="password"
+      label="Password"
+      [control]="passwordSignInControl"
+    ></app-input>
 
-<form class="ui form" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <!-- <div *ngIf="signInForm.errors" class="ui red basis label">
+        <p *ngIf="signInForm.errors?.['credentials'].error?.['username']">
+                Invalid Username
+        </p>
+    </div> -->
 
-    <app-input inputType="text" label="Username" [control]="usernameSignInControl"></app-input>
-    <app-input inputType="password" label="Password" [control]="passwordSignInControl"></app-input>
-
-    <div *ngIf="signInForm.errors" class="ui red basis label">
-        <p *ngIf="signInForm.errors?.['credentials']">
-            Invalid Username or Password
+    <div class="four wide field">
+      <div *ngIf="signInForm.errors" class="ui red label basis error-container">
+        <p
+          *ngIf="signInForm.errors?.['credentials'].username"
+          class="error-message"
+        >
+          <!-- {{ signInForm.errors['credentials'].username }} -->
+          Invalid Username
         </p>
 
+        <p
+          *ngIf="signInForm.errors?.['credentials'].password"
+          class="error-message"
+        >
+          <!-- {{ signInForm.errors['credentials'].password }} -->
+          Invalid Password
+        </p>
+      </div>
+
+      <div>
+        <button class="ui button primary" type="submit">Submit</button>
+      </div>
     </div>
-
-
-
-    <div>
-    <button class="ui button primary " type="submit">Submit</button>
-</div>
-
-
-
-
-
 
     <!-- <div class="four wide field">
         <div *ngIf="signInForm.get('username')?.touched && signInForm.errors">
@@ -32,8 +51,7 @@
         </div>
     </div> -->
 
-
-  <!-- <div class="four wide field">
+    <!-- <div class="four wide field">
     <div class="field">
       <label>First Name</label>
       <input type="text" name="first-name" placeholder="First Name" />
@@ -44,4 +62,5 @@
     </div>
   </div>
   <button class="ui button" type="submit">Submit</button> -->
-</form>
+  </form>
+</ng-container>
