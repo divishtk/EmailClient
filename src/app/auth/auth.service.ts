@@ -12,7 +12,7 @@ interface SignUpDataTypes {
   passwordConfirmation: string
 }
 
-interface SignuUpResponse{
+interface SignuUpResponse {
   username: string
 }
 
@@ -23,7 +23,7 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
 
-  rootUrl = 'https://api.angular-email.com' ;
+  rootUrl = 'https://api.angular-email.com';
   signedIn$ = new BehaviorSubject(false);
 
 
@@ -36,12 +36,25 @@ export class AuthService {
 
   signUp(credentials: SignUpDataTypes) {
     return this.httpClient.post<SignuUpResponse>(`${this.rootUrl}/auth/signup`,
-      credentials
+      credentials,{
+        withCredentials: true
+      }
     ).pipe(
-      tap(()=>{ 
-          this.signedIn$.next(true);
+      tap(() => {
+        this.signedIn$.next(true);
       })
     )
+  }
+
+  checkAuth(){
+    return this.httpClient.get(`${this.rootUrl}/auth/signedin`,{
+      withCredentials:true
+    }).
+          pipe(
+            tap((resp)=>{
+            })
+          )
+
   }
 
 }
