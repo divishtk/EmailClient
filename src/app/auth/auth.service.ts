@@ -36,9 +36,10 @@ export class AuthService {
 
   signUp(credentials: SignUpDataTypes) {
     return this.httpClient.post<SignuUpResponse>(`${this.rootUrl}/auth/signup`,
-      credentials,{
-        withCredentials: true
-      }
+      credentials
+      //{
+      //   withCredentials: true
+      // }
     ).pipe(
       tap(() => {
         this.signedIn$.next(true);
@@ -46,14 +47,17 @@ export class AuthService {
     )
   }
 
-  checkAuth(){
-    return this.httpClient.get(`${this.rootUrl}/auth/signedin`,{
-      withCredentials:true
-    }).
-          pipe(
-            tap((resp)=>{
-            })
-          )
+  checkAuth() {
+    return this.httpClient.get(`${this.rootUrl}/auth/signedin`
+      //   {
+      // withCredentials:true
+      //   }
+    ).
+      pipe(
+        tap((resp) => {
+          console.log('res', resp);
+        })
+      )
 
   }
 
