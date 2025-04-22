@@ -38,6 +38,13 @@ export class SignInComponent {
       return;
     }
 
-    this.authService.signIn(this.signInForm.value).subscribe(() => {});
+    this.authService.signIn(this.signInForm.value).subscribe({
+      next: ()=>{},
+      error:({error})=>{
+            if(error.username || error.password){
+                this.signInForm.setErrors({credentials: true})
+            }
+      }
+    });
   }
 }
