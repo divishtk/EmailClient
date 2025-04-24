@@ -8,6 +8,14 @@ interface EmailResponseType {
   from: string
 }
 
+interface EmailData {
+  id: string ;
+  subject : string;
+  from: string;
+  to:string;
+  html:string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +27,10 @@ export class EmailService {
 
   getEmails(){
     return this.htttpClient.get<EmailResponseType[]>(`${this.rootUrl}/emails`)
+  }
+
+  fetchEmailById(id: string){
+    return this.htttpClient.get<EmailData>(`${this.rootUrl}/emails/${id}`)
 
   }
 
