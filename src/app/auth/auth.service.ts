@@ -33,7 +33,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
   rootUrl = 'https://api.angular-email.com';
-  signedIn$ = new BehaviorSubject(false);
+  signedIn$ = new BehaviorSubject<boolean | null>(null);
 
   usernameAvailable(uname: String) {
     return this.httpClient.post<UsernameAvailableStaus>(

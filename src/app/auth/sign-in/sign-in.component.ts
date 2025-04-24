@@ -41,7 +41,7 @@ export class SignInComponent {
 
     this.authService.signIn(this.signInForm.value).subscribe({
       next: ()=>{
-        this.router.navigateByUrl('inbox')
+        this.router.navigateByUrl('/inbox')
       },
       error:({error})=>{
            // if(error.username || error.password){
