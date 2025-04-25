@@ -16,7 +16,7 @@ export class ModalComponent {
   }
 
   ngOnDestroy() {
-    this.el.nativeElement.destroy();
+    this.el.nativeElement.remove();
   }
 
   OnDismissClick() {

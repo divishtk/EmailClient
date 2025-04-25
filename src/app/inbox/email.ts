@@ -3,5 +3,6 @@ export interface Email {
     subject : string;
     from: string;
     to:string;
-    html:string
+    html:string;
+    text: string
   }
