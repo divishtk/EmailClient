@@ -22,4 +22,7 @@ export class EmailService {
   fetchEmailById(id: string) {
     return this.htttpClient.get<Email>(`${this.rootUrl}/emails/${id}`);
   }
+  sendEmails(email:Email){
+      return this.htttpClient.post(`${this.rootUrl}/emails`,email);
+  }
 }

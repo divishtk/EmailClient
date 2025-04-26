@@ -15,6 +15,7 @@ export class EmailShowComponent {
 
   constructor(private activatedRoute: ActivatedRoute,private emailService: EmailService) {
       this.activatedRoute.data.subscribe(({email})=>{
+        console.log('e',email);
           this.email = email ;
       })
     }
