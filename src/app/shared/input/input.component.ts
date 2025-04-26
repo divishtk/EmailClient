@@ -13,6 +13,7 @@ export class InputComponent {
   @Input() control: FormControl = new FormControl();
   @Input() label: string = '';
   @Input() inputType:string ='';
+  @Input() controlType = 'input'
 
 
   showErrors(): boolean {

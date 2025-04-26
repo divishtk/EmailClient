@@ -2,6 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
 
+interface SigninResponse{
+  username: string ;
+}
+
 interface UsernameAvailableStaus {
   available: boolean;
 }
@@ -26,10 +30,13 @@ interface SignInData {
   username: string;
 }
 
+
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  username = ''
   constructor(private httpClient: HttpClient) {}
 
   rootUrl = 'https://api.angular-email.com';
@@ -54,8 +61,9 @@ export class AuthService {
         // }
       )
       .pipe(
-        tap(() => {
+        tap((resp) => {
           this.signedIn$.next(true);
+          this.username = resp.username ;
         })
       );
   }
@@ -69,9 +77,11 @@ export class AuthService {
         //   }
       )
       .pipe(
-        tap(({ authenticated }) => {
-          console.log('res', authenticated);
+        tap(({ authenticated 
+             ,  username
+             }) => {
           this.signedIn$.next(authenticated);
+          this.username = username ;  
         })
       );
   }
@@ -86,10 +96,11 @@ export class AuthService {
 
   signIn(signInCredentials: SignInData) {
     return this.httpClient
-      .post(`${this.rootUrl}/auth/signin`, signInCredentials)
+      .post<SigninResponse>(`${this.rootUrl}/auth/signin`, signInCredentials)
       .pipe(
-        tap(() => {
+        tap((resp) => {
           this.signedIn$.next(true);
+          this.username = resp.username ; 
         })
       );
   }

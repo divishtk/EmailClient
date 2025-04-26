@@ -1,1 +1,8 @@
-<p>email-form works!</p>
+<form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+    <!-- <input formControlName="from"> -->
+     <app-input label="To" inputType="email" [control]="toFormControl"></app-input>
+     <app-input label="From" inputType="email" [control]="fromFormControl"></app-input>
+     <app-input label="Subject" inputType="text" [control]="subjectFormControl"></app-input>
+     <app-input controlType="textarea" label="Content"  [control]="contentFormControl"></app-input>
+    <button class="ui button primary">Send</button>
+</form>
